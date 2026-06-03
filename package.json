@@ -1,5 +1,5 @@
 {
-  "name": "logtrace-node",
+  "name": "@logtracehq/logtrace-node",
   "version": "0.0.1",
   "description": "Node.js client for the Logtrace API",
   "engines": {

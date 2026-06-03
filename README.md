@@ -5,13 +5,13 @@ Node.js client for the Logtrace API. Works in TypeScript and plain JavaScript.
 ## Install
 
 ```bash
-npm install logtrace-node
+npm install @logtracehq/logtrace-node
 ```
 
 ## Usage
 
 ```ts
-import { Client } from 'logtrace-node';
+import { Client } from '@logtracehq/logtrace-node';
 
 const client = Client.new(process.env.LOGTRACE_API_KEY!);
 
@@ -25,7 +25,7 @@ await client.createAuditLog({ ... });
 Automatically attaches request context (IP, method, endpoint, headers, status code) to every call made inside a handler.
 
 ```ts
-import { Client, logger, fromContext } from 'logtrace-node';
+import { Client, logger, fromContext } from '@logtracehq/logtrace-node';
 
 const client = Client.new(process.env.LOGTRACE_API_KEY!);
 
@@ -43,7 +43,7 @@ app.post('/login', async (req, res) => {
 ## Error handling
 
 ```ts
-import { LogtraceError } from 'logtrace-node';
+import { LogtraceError } from '@logtracehq/logtrace-node';
 
 try {
   await client.createEvent({ ... });
