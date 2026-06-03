@@ -68,8 +68,6 @@ export interface APIResponse {
 // ─── Client options ───────────────────────────────────────────────────────────
 
 export interface ClientOptions {
-  /** Override the default base URL. */
-  baseUrl?: string;
   /** HTTP timeout in milliseconds. Defaults to 10 000. */
   timeoutMs?: number;
 }

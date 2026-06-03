@@ -20,22 +20,13 @@ export class Client {
       throw new Error("logtrace: API key is required");
     }
     this.apiKey = apiKey;
-    this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, "");
+    this.baseUrl = DEFAULT_BASE_URL;
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   }
 
-  /**
-   * Factory method — mirrors Go's `New()`.
-   *
-   * ```ts
-   * const client = Client.new(process.env.LOGTRACE_API_KEY!);
-   * ```
-   */
   static new(apiKey: string, options?: ClientOptions): Client {
     return new Client(apiKey, options);
   }
-
-  // ─── Internal HTTP helper ──────────────────────────────────────────────────
 
   private async post<T>(
     path: string,
@@ -46,7 +37,6 @@ export class Client {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
 
-    // Merge caller signal with our own timeout signal where supported (Node 20+).
     const combinedSignal: AbortSignal =
       signal && typeof AbortSignal.any === "function"
         ? AbortSignal.any([signal, controller.signal])
@@ -102,8 +92,6 @@ export class Client {
 
     return { ...parsed, statusCode: response.status };
   }
-
-  // ─── Public API ────────────────────────────────────────────────────────────
 
   createEvent(
     req: CreateEventRequest,
