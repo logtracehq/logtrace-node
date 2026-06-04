@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import type { Client } from "./client";
+import type { Logtrace } from "./client";
 import { RequestClient, _storage } from "./context";
 
 // ─── IP helpers ────────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@ export function operatingSystem(userAgent: string): string {
  * });
  * ```
  */
-export function logger(client: Client) {
+export function logger(client: Logtrace) {
   return function logtraceMiddleware(
     req: IncomingMessage,
     res: ServerResponse,

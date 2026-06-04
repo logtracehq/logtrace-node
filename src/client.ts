@@ -10,7 +10,7 @@ import type {
 const DEFAULT_BASE_URL = "https://api.logtracehq.com/v1/developers";
 const DEFAULT_TIMEOUT_MS = 10_000;
 
-export class Client {
+export class Logtrace {
   private readonly apiKey: string;
   private readonly baseUrl: string;
   private readonly timeoutMs: number;
@@ -24,8 +24,8 @@ export class Client {
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   }
 
-  static new(apiKey: string, options?: ClientOptions): Client {
-    return new Client(apiKey, options);
+  static new(apiKey: string, options?: ClientOptions): Logtrace {
+    return new Logtrace(apiKey, options);
   }
 
   private async post<T>(

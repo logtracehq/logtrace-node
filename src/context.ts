@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import type { Client } from "./client";
+import type { Logtrace } from "./client";
 import type {
   APIResponse,
   CreateAuditLogRequest,
@@ -22,7 +22,7 @@ interface RequestClientOptions {
 }
 
 export class RequestClient {
-  private readonly client: Client;
+  private readonly client: Logtrace;
   private readonly method: string;
   private readonly endpoint: string;
   private readonly clientIp: string;
@@ -32,7 +32,7 @@ export class RequestClient {
   /** Mutable — populated by the middleware after the handler finishes. */
   _headers: Record<string, string>;
 
-  constructor(client: Client, options: RequestClientOptions = {}) {
+  constructor(client: Logtrace, options: RequestClientOptions = {}) {
     this.client = client;
     this.method = options.method ?? "";
     this.endpoint = options.endpoint ?? "";
@@ -97,6 +97,6 @@ export const _storage = new AsyncLocalStorage<RequestClient>();
  * await rc.createEvent({ actionName: 'login', ... });
  * ```
  */
-export function fromContext(fallback: Client): RequestClient {
+export function fromContext(fallback: Logtrace): RequestClient {
   return _storage.getStore() ?? new RequestClient(fallback);
 }

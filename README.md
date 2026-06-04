@@ -11,9 +11,9 @@ npm install @logtracehq/logtrace-node
 ## Usage
 
 ```ts
-import { Client } from '@logtracehq/logtrace-node';
+import { Logtrace } from '@logtracehq/logtrace-node';
 
-const client = Client.new(process.env.LOGTRACE_API_KEY!);
+const client = Logtrace.new(process.env.LOGTRACE_API_KEY!);
 
 await client.createEvent({ ... });
 await client.createSession({ ... });
@@ -25,9 +25,9 @@ await client.createAuditLog({ ... });
 Automatically attaches request context (IP, method, endpoint, headers, status code) to every call made inside a handler.
 
 ```ts
-import { Client, logger, fromContext } from '@logtracehq/logtrace-node';
+import { Logtrace, logger, fromContext } from '@logtracehq/logtrace-node';
 
-const client = Client.new(process.env.LOGTRACE_API_KEY!);
+const client = Logtrace.new(process.env.LOGTRACE_API_KEY!);
 
 app.use(logger(client));
 

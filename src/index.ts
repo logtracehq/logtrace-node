@@ -13,7 +13,7 @@ export type {
 export { LogtraceError } from "./error";
 
 // Core client
-export { Client } from "./client";
+export { Logtrace } from "./client";
 
 // Context helpers
 export { fromContext, RequestClient } from "./context";
