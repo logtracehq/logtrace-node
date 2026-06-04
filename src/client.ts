@@ -12,7 +12,6 @@ const DEFAULT_TIMEOUT_MS = 10_000;
 
 export class Logtrace {
   private readonly apiKey: string;
-  private readonly baseUrl: string;
   private readonly timeoutMs: number;
 
   constructor(apiKey: string, options: ClientOptions = {}) {
@@ -20,7 +19,6 @@ export class Logtrace {
       throw new Error("logtrace: API key is required");
     }
     this.apiKey = apiKey;
-    this.baseUrl = DEFAULT_BASE_URL;
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   }
 
@@ -33,7 +31,7 @@ export class Logtrace {
     body: T,
     signal?: AbortSignal,
   ): Promise<APIResponse> {
-    const url = `${this.baseUrl}${path}`;
+    const url = `${DEFAULT_BASE_URL}${path}`;
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
 
