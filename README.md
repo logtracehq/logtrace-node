@@ -33,7 +33,7 @@ app.use(logger(client));
 
 app.post('/login', async (req, res) => {
   const rc = fromContext(client);
-  await rc.createSession({ loginAt: new Date(), status: 'active', ... });
+  await rc.createSession({ login_at: new Date(), status: 'active', ... });
   res.json({ ok: true });
 });
 ```
