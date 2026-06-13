@@ -1,62 +1,56 @@
-// ─── Shared primitives ────────────────────────────────────────────────────────
-
 export type Metadata = Record<string, unknown>;
 
-// ─── Request / response shapes ────────────────────────────────────────────────
-
 export interface RequestDetails {
-  timestamp: string; // ISO-8601
-  httpMethod: string;
-  httpEndpoint: string;
-  httpStatusCode: number;
-  ipAddress: string;
-  operatingSystem: string;
-  clientUserAgent: string;
-  geoIpLocation?: string;
-  requestHeaders: Record<string, string>;
-  requestDuration?: string;
-  requestId?: string;
+  timestamp: string;
+  http_method: string;
+  http_endpoint: string;
+  http_status_code: number;
+  ip_address: string;
+  operating_system: string;
+  client_user_agent: string;
+  geo_ip_location?: string;
+  request_headers: Record<string, string>;
+  request_duration?: string;
+  request_id?: string;
 }
 
 export interface CreateEventRequest {
-  actionName: string;
-  userId?: string;
-  userName?: string;
-  httpMethod: string;
-  httpStatus: number;
-  httpEndpoint?: string;
-  clientIp: string;
-  /** Populated automatically by the middleware / RequestClient. */
-  requestDetails?: RequestDetails;
-  clientUserAgent: string;
+  name: string;
+  user_id?: string;
+  username?: string;
+  http_method: string;
+  http_status: number;
+  http_endpoint?: string;
+  client_ip: string;
+  request_details?: RequestDetails;
+  client_user_agent: string;
   type?: string;
-  geoIpLocation?: string;
+  geo_ip_location?: string;
   metadata?: Metadata;
 }
 
 export interface CreateSessionRequest {
-  loginAt: Date | string;
+  login_at: string;
+  logout_at: string;
   status: string;
-  userId?: string;
-  userName?: string;
-  deviceInfo?: string;
-  ipAddress?: string;
+  user_id?: string;
+  username?: string;
+  device_info?: string;
+  ip_address?: string;
   location?: string;
-  /** Populated automatically by the middleware / RequestClient. */
-  requestDetails?: RequestDetails;
+  request_details?: RequestDetails;
   token?: string;
   metadata?: Metadata;
 }
 
 export interface CreateAuditLogRequest {
-  action: string;
+  name: string;
   timestamp: string;
-  userId?: string;
-  userName?: string;
-  ipAddress?: string;
-  /** Populated automatically by the middleware / RequestClient. */
-  requestDetails?: RequestDetails;
-  requestId?: string;
+  user_id?: string;
+  username?: string;
+  ip_address?: string;
+  request_details?: RequestDetails;
+  request_id?: string;
   metadata?: Metadata;
 }
 
@@ -64,8 +58,6 @@ export interface APIResponse {
   message: string;
   statusCode: number;
 }
-
-// ─── Client options ───────────────────────────────────────────────────────────
 
 export interface ClientOptions {
   /** HTTP timeout in milliseconds. Defaults to 10 000. */

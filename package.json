@@ -1,6 +1,6 @@
 {
   "name": "@logtracehq/logtrace-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node.js client for the Logtrace API",
   "engines": {
     "node": ">=18.0.0"
@@ -25,6 +25,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "prepublish": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "node --test dist/index.test.js"
   },

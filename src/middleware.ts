@@ -67,7 +67,7 @@ export function operatingSystem(userAgent: string): string {
  *
  * app.get('/', async (req, res) => {
  *   const rc = logtrace.fromContext(client);
- *   await rc.createEvent({ actionName: 'home-visit', ... });
+ *   await rc.createEvent({ name: 'home-visit', ... });
  *   res.send('ok');
  * });
  * ```

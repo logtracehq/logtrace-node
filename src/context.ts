@@ -46,13 +46,13 @@ export class RequestClient {
   private buildRequestDetails(): RequestDetails {
     return {
       timestamp: new Date().toISOString(),
-      httpMethod: this.method,
-      httpEndpoint: this.endpoint,
-      ipAddress: this.clientIp,
-      clientUserAgent: this.userAgent,
-      httpStatusCode: this.getStatus?.() ?? 0,
-      operatingSystem: this.operatingSystem,
-      requestHeaders: { ...this._headers },
+      http_method: this.method,
+      http_endpoint: this.endpoint,
+      ip_address: this.clientIp,
+      client_user_agent: this.userAgent,
+      http_status_code: this.getStatus?.() ?? 0,
+      operating_system: this.operatingSystem,
+      request_headers: { ...this._headers },
     };
   }
 
@@ -60,7 +60,7 @@ export class RequestClient {
     req: CreateEventRequest,
     signal?: AbortSignal,
   ): Promise<APIResponse> {
-    req.requestDetails = this.buildRequestDetails();
+    req.request_details = this.buildRequestDetails();
     return this.client.createEvent(req, signal);
   }
 
@@ -68,7 +68,7 @@ export class RequestClient {
     req: CreateSessionRequest,
     signal?: AbortSignal,
   ): Promise<APIResponse> {
-    req.requestDetails = this.buildRequestDetails();
+    req.request_details = this.buildRequestDetails();
     return this.client.createSession(req, signal);
   }
 
@@ -76,7 +76,7 @@ export class RequestClient {
     req: CreateAuditLogRequest,
     signal?: AbortSignal,
   ): Promise<APIResponse> {
-    req.requestDetails = this.buildRequestDetails();
+    req.request_details = this.buildRequestDetails();
     return this.client.createAuditLog(req, signal);
   }
 }
@@ -94,7 +94,7 @@ export const _storage = new AsyncLocalStorage<RequestClient>();
  * @example
  * ```ts
  * const rc = fromContext(client);
- * await rc.createEvent({ actionName: 'login', ... });
+ * await rc.createEvent({ name: 'login', ... });
  * ```
  */
 export function fromContext(fallback: Logtrace): RequestClient {
